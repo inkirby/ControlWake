@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="background" x1="176" y1="120" x2="848" y2="904" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF7EC"/>
+      <stop offset="1" stop-color="#E6C9AA"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="300" y1="372" x2="650" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B86D42"/>
+      <stop offset="1" stop-color="#7A3F28"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="610" y1="610" x2="874" y2="874" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35404F"/>
+      <stop offset="1" stop-color="#171C24"/>
+    </linearGradient>
+  </defs>
+
+  <!-- macOS-style rounded tile -->
+  <rect x="64" y="64" width="896" height="896" rx="208" fill="url(#background)"/>
+
+  <!-- steam -->
+  <g fill="none" stroke="#9C6245" stroke-width="34" stroke-linecap="round">
+    <path d="M360 316c-51-55 46-82 1-145"/>
+    <path d="M498 305c-47-53 44-79 1-141"/>
+    <path d="M635 316c-51-55 46-82 1-145"/>
+  </g>
+
+  <!-- cup handle -->
+  <path d="M676 450h37c102 0 153 51 153 135s-66 144-173 144h-49v-80h47c57 0 91-23 91-65 0-38-25-56-73-56h-33z"
+        fill="#7A3F28"/>
+
+  <!-- cup body -->
+  <path d="M221 409h486v184c0 126-92 211-243 211s-243-85-243-211z" fill="url(#cup)"/>
+  <path d="M257 581c0 105 75 171 207 171 82 0 144-26 178-73-40 28-92 42-154 42-133 0-207-61-231-140z"
+        fill="#FFFFFF" opacity="0.12"/>
+
+  <!-- rim and coffee -->
+  <ellipse cx="464" cy="409" rx="243" ry="72" fill="#F4D9BC"/>
+  <ellipse cx="464" cy="410" rx="207" ry="49" fill="#3C241A"/>
+  <path d="M290 397c75-34 273-37 354 0-31-43-112-61-180-61-69 0-145 17-174 61z"
+        fill="#FFFFFF" opacity="0.10"/>
+
+  <!-- Control Center badge -->
+  <circle cx="748" cy="748" r="190" fill="#FFF7EC"/>
+  <circle cx="748" cy="748" r="168" fill="url(#badge)"/>
+
+  <!-- Control Center sliders -->
+  <g fill="#FFFFFF">
+    <rect x="642" y="665" width="212" height="48" rx="24" opacity="0.96"/>
+    <circle cx="797" cy="689" r="36"/>
+    <rect x="642" y="783" width="212" height="48" rx="24" opacity="0.96"/>
+    <circle cx="699" cy="807" r="36"/>
+  </g>
+  <g fill="#202732">
+    <circle cx="797" cy="689" r="17"/>
+    <circle cx="699" cy="807" r="17"/>
+  </g>
+</svg>
