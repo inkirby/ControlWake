@@ -1,0 +1,2 @@
+// Machine-specific signing settings are intentionally kept out of Git.
+#include? "Local.xcconfig"

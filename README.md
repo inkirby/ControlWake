@@ -17,13 +17,24 @@ which also prevents idle system sleep.
 
 ## Development setup
 
-1. Open `ControlWake.xcodeproj` in Xcode.
-2. Select a development team for the `ControlWake` and
-   `ControlWakeExtension` targets.
-3. Ensure the App Groups capability contains
+1. Create your local signing configuration:
+
+   ```sh
+   cp Config/Local.xcconfig.example Config/Local.xcconfig
+   ```
+
+2. Replace `YOUR_TEAM_ID` in `Config/Local.xcconfig` with your Apple Developer
+   Team ID. This file is ignored by Git and is shared by the Debug and Release
+   configurations of both targets.
+3. Open `ControlWake.xcodeproj` in Xcode.
+4. Ensure the App Groups capability contains
    `group.com.inkirby.ControlWake` for both targets.
-4. Build and run the `ControlWake` scheme once.
-5. Open Control Center, choose **Edit Controls**, and add **Keep Awake**.
+5. Build and run the `ControlWake` scheme once.
+6. Open Control Center, choose **Edit Controls**, and add **Keep Awake**.
+
+The bundle identifiers and App Group intentionally retain the original
+`com.inkirby` namespace. A different Apple Developer team must provision these
+identifiers and the App Group before automatic signing can complete.
 
 For subsequent command-line builds, run:
 
