@@ -21,7 +21,7 @@ struct ControlWakeControl: ControlWidget {
             .tint(.orange)
         }
         .displayName("Keep Awake")
-        .description("Prevent your Mac from entering idle system sleep.")
+        .description("Prevent the display from turning off due to inactivity.")
     }
 }
 

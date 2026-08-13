@@ -13,7 +13,7 @@ Build a minimal macOS app that:
 
 - Adds a **Keep Awake** toggle to macOS Control Center.
 - Shows the toggle as **active while Keep Awake is enabled**.
-- Prevents the Mac from entering idle system sleep.
+- Prevents the display from turning off due to inactivity, which also prevents idle system sleep.
 - Does **not** require a menu-bar icon.
 - Does **not** show a Dock icon.
 - Uses native macOS APIs instead of shelling out to `caffeinate`.
@@ -31,7 +31,7 @@ Control Center
 └────────────────────┘
 ```
 
-When highlighted, the Mac should remain awake even if the display sleeps.
+When highlighted, the Mac and its display should remain awake.
 
 ---
 
@@ -191,14 +191,14 @@ IOPMAssertionRelease(...)
 Initial sleep behavior should correspond to:
 
 ```text
+Prevent idle display sleep
 Prevent idle system sleep
-Allow display sleep
 ```
 
 Likely assertion type:
 
 ```swift
-kIOPMAssertionTypeNoIdleSleep
+kIOPMAssertionTypePreventUserIdleDisplaySleep
 ```
 
 Conceptual implementation:
@@ -209,7 +209,7 @@ final class SleepAssertionManager {
     private var assertionID: IOPMAssertionID = 0
 
     func enable() {
-        // Create NoIdleSleep assertion
+        // Create PreventUserIdleDisplaySleep assertion
     }
 
     func disable() {
@@ -413,9 +413,9 @@ Implement only:
 - [ ] ControlWake appears as an available Control Center control.
 - [ ] User can add it to Control Center.
 - [ ] Toggle has visible ON/OFF state.
-- [ ] Tapping ON prevents idle system sleep.
+- [ ] Tapping ON prevents idle display sleep and idle system sleep.
 - [ ] Tapping OFF restores normal sleep behavior.
-- [ ] Display is still allowed to sleep.
+- [ ] Display remains on while Keep Awake is enabled.
 - [ ] State is shared correctly between the control and host app.
 - [ ] No menu-bar item.
 - [ ] No Dock icon.
@@ -479,13 +479,13 @@ pmset -g assertions
 
 should show a relevant assertion belonging to ControlWake.
 
-The Mac should not enter idle system sleep while that assertion exists.
+The display should not turn off due to inactivity while that assertion exists,
+and the Mac should not enter idle system sleep.
 
-## 4. Display sleep still works
+## 4. Display remains awake
 
-The display should still be allowed to turn off normally.
-
-ControlWake v0.1 should prevent **system idle sleep**, not force the screen to remain on.
+The display should remain on beyond the configured display sleep timeout while
+ControlWake is enabled.
 
 ## 5. Disable works
 
@@ -637,25 +637,6 @@ If additional entitlements or capabilities are required for Control Widgets/App 
 # Future Features
 
 Only consider these after the core project is stable.
-
-## Keep Display Awake
-
-Possible second control or configurable mode:
-
-```text
-Keep System Awake
-Keep Display Awake
-```
-
-Display-awake behavior would correspond conceptually to:
-
-```bash
-caffeinate -d
-```
-
-but should still use native APIs.
-
----
 
 ## Timed Sessions
 
@@ -835,7 +816,7 @@ Button highlights
 ↓
 Mac stays awake
 ↓
-Display may still sleep
+Display stays awake
 ↓
 Tap ControlWake again
 ↓

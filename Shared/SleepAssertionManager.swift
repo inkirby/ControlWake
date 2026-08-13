@@ -37,9 +37,9 @@ final class SleepAssertionManager {
 
         var newAssertionID: IOPMAssertionID = 0
         let result = IOPMAssertionCreateWithDescription(
-            kIOPMAssertionTypeNoIdleSleep as CFString,
+            kIOPMAssertionTypePreventUserIdleDisplaySleep as CFString,
             "ControlWake" as CFString,
-            "Keep Awake enabled by the user" as CFString,
+            "Keep display awake enabled by the user" as CFString,
             nil,
             nil,
             0,

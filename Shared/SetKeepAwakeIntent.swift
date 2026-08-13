@@ -16,7 +16,7 @@ extension Notification.Name {
 struct SetKeepAwakeIntent: SetValueIntent {
     static let title: LocalizedStringResource = "Keep Awake"
     static let description = IntentDescription(
-        "Prevents idle system sleep while still allowing the display to sleep."
+        "Prevents the display from turning off due to inactivity."
     )
     // Dynamic foreground mode launches the containing app in the background and
     // only brings it forward if the intent explicitly requests that transition.

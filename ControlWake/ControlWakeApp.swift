@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import WidgetKit
 
 @main
 struct ControlWakeApp: App {
@@ -32,6 +33,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
         KeepAwakeCoordinator.shared.restoreDesiredState()
+        ControlCenter.shared.reloadControls(
+            ofKind: ControlWakeConstants.controlKind
+        )
     }
 
     func applicationOpenUntitledFile(_ sender: NSApplication) -> Bool {
